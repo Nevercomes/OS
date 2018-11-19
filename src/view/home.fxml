@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="800" prefWidth="1200" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
+    <children>
+
+        <!--info-->
+        <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="120.0" prefWidth="200.0">
+            <children>
+                <VBox spacing="5">
+                   <children>
+                       <!--<Label text="Info：">-->
+                           <!--<font>-->
+                               <!--<Font size="20.0" />-->
+                           <!--</font>-->
+                       <!--</Label>-->
+                       <Label text="Program：10" />
+                       <Label text="Privilege: 1-7" />
+                       <Label text="Need Time: 1-10" />
+                       <Label text="Need Memory: 3-100KB" />
+                       <Label text="Memory Size: 1024kB" />
+                   </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+
+        <!--ready queue-->
+        <ScrollPane layoutX="60.0" layoutY="165.0" minHeight="100.0" minWidth="-Infinity" prefHeight="400.0" prefWidth="240">
+            <content>
+                <VBox fx:id="vBoxReady" layoutX="60.0" layoutY="165.0" minHeight="100.0" minWidth="-Infinity"  prefWidth="220.0" spacing="10"/>
+            </content>
+        </ScrollPane>
+        <Label layoutX="106.0" layoutY="580.0" text="Ready Queue">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+
+        <!--in cpu-->
+        <AnchorPane layoutX="346.0" layoutY="245.0" prefHeight="240.0" prefWidth="240.0">
+            <children>
+                <VBox fx:id="vBoxInCpu" layoutX="10.0" layoutY="140.0" prefHeight="100.0" prefWidth="220.0" />
+            </children>
+        </AnchorPane>
+        <Label layoutX="432.0" layoutY="580.0" text="In CPU">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+
+        <!--in suspension-->
+        <ScrollPane layoutX="660.0" layoutY="165.0" minHeight="100.0" minWidth="-Infinity" prefHeight="400.0" prefWidth="240">
+            <content>
+                <VBox fx:id="vBoxSuspension" minHeight="100.0" minWidth="-Infinity" prefWidth="220.0" spacing="10"/>
+            </content>
+        </ScrollPane>
+        <Label layoutX="712.0" layoutY="580.0" text="In Suspension">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+
+        <!--side record-->
+        <AnchorPane layoutX="940.0" prefHeight="300.0" prefWidth="260.0">
+            <children>
+                <Label layoutY="10.0" text="Processing Record">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+                <ScrollPane layoutY="50.0" prefHeight="250.0" prefWidth="260.0">
+                    <content>
+                        <VBox fx:id="vBoxRecord" minHeight="100.0" minWidth="-Infinity" prefWidth="240.0" spacing="10"/>
+                    </content>
+                </ScrollPane>
+            </children>
+        </AnchorPane>
+        <!--side backup-->
+        <AnchorPane layoutX="940.0" layoutY="300.0" prefHeight="500.0" prefWidth="260.0">
+            <children>
+                <Label layoutY="10.0" text="Backup Queue">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+                <ScrollPane layoutY="50.0" prefHeight="400.0" prefWidth="260.0">
+                    <content>
+                        <VBox fx:id="vBoxBackup" minHeight="100.0" minWidth="-Infinity" prefWidth="220.0" spacing="10"/>
+                    </content>
+                </ScrollPane>
+            </children>
+        </AnchorPane>
+
+        <!--menu-->
+        <HBox layoutX="90.0" layoutY="645.0" prefHeight="40.0" prefWidth="820.0" spacing="10">
+            <children>
+                <HBox prefHeight="40.0">
+                    <children>
+                        <Label minHeight="40.0" text="Time：" />
+                        <TextField fx:id="txtNeedTime" minHeight="40.0" prefWidth="100.0" />
+                    </children>
+                </HBox>
+                <HBox prefHeight="40.0">
+                    <children>
+                        <Label minHeight="40.0" text="Privilege：" />
+                        <TextField fx:id="txtPrivilege" minHeight="40.0" prefWidth="100.0" />
+                    </children>
+                </HBox>
+                <HBox prefHeight="40.0">
+                    <children>
+                        <Label minHeight="40.0" text="Memory：" />
+                        <TextField fx:id="txtNeedMemory" minHeight="40.0" prefWidth="100.0" />
+                    </children>
+                </HBox>
+                <Button fx:id="btnCreate"  onAction="#onBtnCreate" mnemonicParsing="false" prefHeight="40.0" text="Create Process " />
+                <Button fx:id="btnRandCreate" onAction="#onBtnRandCreate" mnemonicParsing="false" prefHeight="40.0" text="Random Create" />
+            </children>
+        </HBox>
+        <HBox layoutX="90.0" layoutY="715.0" prefHeight="40.0" prefWidth="820.0" spacing="28">
+            <children>
+            <Label prefHeight="40.0" text="Operation Menu:" />
+                <Button fx:id="btnSuspend" onAction="#onBtnSuspend" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Suspend" />
+                <Button fx:id="btnRemove" onAction="#onBtnRemove" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Remove" />
+                <Button fx:id="btnAuto" onAction="#onBtnAuto" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="ON" />
+                <Button fx:id="btnStart" onAction="#onBtnStart" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Start" />
+                <Button fx:id="btnPerform" onAction="#onBtnPerform" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Perform" />
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

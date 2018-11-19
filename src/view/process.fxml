@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root onMouseClicked="#onProcessController" minHeight="100" prefWidth="220" type="AnchorPane" xmlns="http://javafx.com/javafx/8"
+         xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <VBox>
+            <Label fx:id="labelPid" prefWidth="220.0" text="10000" alignment="CENTER"/>
+            <HBox>
+                <Label prefWidth="110.0" text="Need Time: "/>
+                <Label fx:id="labelNeedTime" prefWidth="110.0" text="2"/>
+            </HBox>
+            <HBox>
+                <Label prefWidth="110.0" text="Privilege：" />
+                <Label fx:id="labelPrivilege" prefWidth="110.0" text="5" />
+            </HBox>
+            <HBox>
+                <Label prefWidth="110.0" text="Need Mem: " />
+                <Label fx:id="labelNeedMemory" prefWidth="110.0" text="20"/>
+            </HBox>
+            <HBox>
+                <Label prefWidth="110.0" text="Mem Location " />
+                <Label fx:id="labelMemoryLocation" prefWidth="110.0" text="20"/>
+            </HBox>
+            <HBox>
+                <Label prefWidth="110.0" text="Status:" />
+                <Label fx:id="labelStatus" prefWidth="110.0" text="Submit"/>
+            </HBox>
+            <HBox>
+                <Label prefWidth="110.0" text="Next: " />
+                <Label fx:id="labelNext" prefWidth="110.0" text=""/>
+            </HBox>
+
+        </VBox>
+
+    </children>
+</fx:root>

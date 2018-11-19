@@ -1,0 +1,9 @@
+# the out directory
+out/
+
+# the .idea directory
+.idea/artifacts/
+.idea/workspace.xml
+
+# OS.iml
+OS.iml
