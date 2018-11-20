@@ -14,7 +14,7 @@ public class ItemServiceImpl implements ItemService {
 
     private Item item;
     private List<Item> itemList = new ArrayList<>();
-    private int[] mem = new int[Global.NUM_MEMORY_SIZE]; // 用来表示内存是否被使用
+    public int[] mem = new int[Global.NUM_MEMORY_SIZE]; // 用来表示内存是否被使用
 
     @Override
     public void initItemList() {
@@ -50,6 +50,9 @@ public class ItemServiceImpl implements ItemService {
         int pStart = process.getMemoryLocation();
         int pLength = process.getNeedMemory();
         int pEnd = pStart + pLength;
+        for (int i = pStart; i < pEnd; i++) {
+            mem[i] = 0;
+        }
         int newItemLength = -1;
         boolean flagTop = false, flagBottom = false;
         for (Item item : itemList) {
