@@ -25,7 +25,7 @@
             </HBox>
             <HBox>
                 <Label prefWidth="110.0" text="Mem Location " />
-                <Label fx:id="labelMemoryLocation" prefWidth="110.0" text="20"/>
+                <Label fx:id="labelMemoryLocation" prefWidth="110.0" text="-1"/>
             </HBox>
             <HBox>
                 <Label prefWidth="110.0" text="Status:" />

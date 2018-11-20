@@ -12,6 +12,7 @@ public class Process {
     private int memoryLocation;
 
     public Process() {
+
     }
 
     public Process(int pid, int status, int privilege, int needTime) {

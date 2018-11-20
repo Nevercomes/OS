@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Item;
 import domain.Process;
 import global.Global;
 import global.Oper;
@@ -11,7 +12,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import service.Impl.ItemServiceImpl;
 import service.Impl.ProcessServiceImpl;
+import service.ItemService;
 import service.ProcessService;
 import utils.RandUtil;
 import utils.TimeUtil;
@@ -44,6 +47,8 @@ public class HomeController implements Initializable {
     private Button btnCreate, btnRandCreate, btnSuspend, btnRemove, btnStart, btnAuto, btnPerform;
 
     private ProcessService processService = new ProcessServiceImpl();
+    private ItemService itemService = new ItemServiceImpl();
+
     private List<ProcessController> readyControllerList = new ArrayList<>();
     private List<ProcessController> backupControllerList = new ArrayList<>();
     private List<ProcessController> suspensionControllerList = new ArrayList<>();
@@ -63,7 +68,11 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        initData();
+    }
 
+    private void initData() {
+        itemService.initItemList();
     }
 
     private void setData() {
@@ -141,9 +150,11 @@ public class HomeController implements Initializable {
         jobScheduleTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                if (inProgram < Global.NUM_PROGRAM) {
-                    jobSchedule();
-                }
+                // 作业调度不再以道数来操作而是以内存分配
+//                if (inProgram < Global.NUM_PROGRAM) {
+//                    jobSchedule();
+//                }
+                jobSchedule();
             }
         }, 0, 50);
         backupTimer.scheduleAtFixedRate(new TimerTask() {
@@ -193,11 +204,11 @@ public class HomeController implements Initializable {
     }
 
     private void initReadyQueue() {
-        for (int i = 0; i < Global.NUM_START_PROGRAM; i++) {
-            Process process = processService.createProcess();
-            process.setStatus(Status.Ready.getCode());
-            readyList.add(process);
-        }
+//        for (int i = 0; i < Global.NUM_START_PROGRAM; i++) {
+//            Process process = processService.createProcess();
+//            process.setStatus(Status.Ready.getCode());
+//            readyList.add(process);
+//        }
     }
 
     private void initBackupQueue() {
@@ -245,6 +256,8 @@ public class HomeController implements Initializable {
             runningProcess.setStatus(Status.Terminated.getCode());
             done = true;
             createRecord(runningProcess, Oper.PROCESS_TERMINATE);
+            // 回收内存
+            itemService.reclaim(runningProcess);
         } else {
             runningProcess.setStatus(Status.Ready.getCode());
             readyList.add(runningProcess);
@@ -265,12 +278,18 @@ public class HomeController implements Initializable {
 
     private void jobSchedule() {
         if (backupList.size() > 0) {
-            Process process = pop(backupList);
-            process.setStatus(Status.Ready.getCode());
-            readyList.add(process);
-            inProgram++;
-            createRecord(process, Oper.JOB_SCHEDULE);
-            setData();
+            Process process = backupList.get(0);
+            // 这里的作业调度按照的还是FIFS调度算法，所以有大进程时可能会卡住
+            int start = itemService.allocate(process);
+            if(start != -1) {
+                process = pop(backupList);
+                process.setStatus(Status.Ready.getCode());
+                process.setMemoryLocation(start);
+                readyList.add(process);
+                inProgram++;
+                createRecord(process, Oper.JOB_SCHEDULE);
+                setData();
+            }
         }
     }
 

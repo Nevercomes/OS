@@ -14,9 +14,9 @@ public class Global {
     public static int NUM_NEEDTIME_MIN = 1;
     public static int NUM_NEEDTIME_MAX = 10;
 
-    public static int NUM_NEEDMEMORY_MIN = 3;
-    public static int NUM_NEEDMEMORY_MAX = 100;
-    public static int NUM_MEMORY_MAX = 1024;
+    public static int NUM_NEEDMEMORY_MIN = 20;
+    public static int NUM_NEEDMEMORY_MAX = 200;
+    public static int NUM_MEMORY_SIZE = 1024;
 
     public static int TIME_CPU_ACTION = 1500;
     public static int TIME_CPU_SCHEDULE_INTERVAL = TIME_CPU_ACTION+1000;

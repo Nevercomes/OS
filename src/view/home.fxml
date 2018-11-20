@@ -15,15 +15,15 @@
             <children>
                 <VBox spacing="5">
                    <children>
-                       <!--<Label text="Info：">-->
-                           <!--<font>-->
-                               <!--<Font size="20.0" />-->
-                           <!--</font>-->
-                       <!--</Label>-->
-                       <Label text="Program：10" />
+                       <Label text="Info：">
+                           <font>
+                               <Font size="20.0" />
+                           </font>
+                       </Label>
+                       <!--<Label text="Program：10" />-->
                        <Label text="Privilege: 1-7" />
                        <Label text="Need Time: 1-10" />
-                       <Label text="Need Memory: 3-100KB" />
+                       <Label text="Need Memory: 20-200KB" />
                        <Label text="Memory Size: 1024kB" />
                    </children>
                 </VBox>
